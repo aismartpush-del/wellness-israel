@@ -817,9 +817,7 @@
             Восстановить <em>себя.</em><br>
             Быть среди своих.
           </h1>
-          <p class="hero-subtitle">
-            Сообщество в Израиле для тех, кому важны здоровье и баланс: живые события, проверенные специалисты и среда, где вас понимают без лишних слов.
-          </p>
+          <p class="hero-subtitle">Переехали в Израиль, сделали всё правильно — и всё равно кажется, что чего-то важного не хватает. Это место для тех, кто ищет не очередной совет, а среду, где можно восстановить себя.</p>
           <div class="hero-buttons">
             <a href="#events" class="btn btn-white">Смотреть ближайшие события</a>
             <a href="#form" class="btn btn-outline-white">Стать частью сообщества</a>
@@ -1404,53 +1402,24 @@
             <p class="form-subtitle">Заполните форму — мы свяжемся с вами и расскажем о ближайших событиях, которые могут вам подойти.</p>
 
             <form id="applicationForm" novalidate>
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label" for="firstName">Имя <span>*</span></label>
-                  <input class="form-input" type="text" id="firstName" name="firstName" placeholder="Ваше имя" required autocomplete="given-name" />
+              <div class="form-group">
+                <label class="form-label" for="firstName">Имя <span aria-hidden="true">*</span></label>
+                <input class="form-input" type="text" id="firstName" name="firstName" placeholder="Ваше имя" required autocomplete="given-name">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="phone">Телефон / WhatsApp <span aria-hidden="true">*</span></label>
+                <input class="form-input" type="tel" id="phone" name="phone" placeholder="+972..." required autocomplete="tel">
+              </div>
+              <fieldset class="form-group" style="border:none;padding:0;margin:0;">
+                <legend class="form-label">Тема обращения</legend>
+                <div class="form-checks">
+                  <label class="form-check"><input type="checkbox" name="topic" value="Эксперт-партнёр"> Эксперт-партнёр</label>
+                  <label class="form-check"><input type="checkbox" name="topic" value="Запись в Wellness Club"> Запись в Wellness Club</label>
+                  <label class="form-check"><input type="checkbox" name="topic" value="Мероприятие"> Мероприятие</label>
                 </div>
-                <div class="form-group">
-                  <label class="form-label" for="lastName">Фамилия</label>
-                  <input class="form-input" type="text" id="lastName" name="lastName" placeholder="Ваша фамилия" autocomplete="family-name" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="email">Email <span>*</span></label>
-                <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email" />
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="phone">Телефон / WhatsApp</label>
-                <input class="form-input" type="tel" id="phone" name="phone" placeholder="+972..." autocomplete="tel" />
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="city">Город проживания</label>
-                <select class="form-select" id="city" name="city">
-                  <option value="" disabled selected>Выберите город</option>
-                  <option>Тель-Авив</option><option>Хайфа</option><option>Иерусалим</option>
-                  <option>Беэр-Шева</option><option>Нетания</option><option>Ришон-ле-Цион</option>
-                  <option>Другой город Израиля</option><option>За пределами Израиля (онлайн)</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <div class="form-checks-label">Что вас интересует?</div>
-                <div class="checks-grid" role="group" aria-label="Направления интереса">
-                  <label class="check-item"><input type="checkbox" name="interests" value="events" /><span>Живые встречи и события</span></label>
-                  <label class="check-item"><input type="checkbox" name="interests" value="retreats" /><span>Ретриты и выезды</span></label>
-                  <label class="check-item"><input type="checkbox" name="interests" value="online" /><span>Онлайн-форматы</span></label>
-                  <label class="check-item"><input type="checkbox" name="interests" value="body" /><span>Телесные практики</span></label>
-                  <label class="check-item"><input type="checkbox" name="interests" value="psych" /><span>Работа с психологом</span></label>
-                  <label class="check-item"><input type="checkbox" name="interests" value="community" /><span>Войти в сообщество</span></label>
-                  <label class="check-item"><input type="checkbox" name="interests" value="expert" /><span>Я эксперт / партнёр</span></label>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="message">Расскажите немного о себе (необязательно)</label>
-                <textarea class="form-textarea" id="message" name="message" placeholder="Что происходит, что привело вас сюда, чего ищете..."></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:var(--text-base);padding:.9em 1.6em;">
-                Отправить заявку
-              </button>
-              <p class="form-privacy">Нажимая кнопку, вы соглашаетесь с <a href="#">политикой конфиденциальности</a>. Мы не рассылаем спам и не передаём данные третьим лицам.</p>
+              </fieldset>
+              <button type="submit" class="btn btn-primary form-submit" style="width:100%;margin-top:var(--space-4);">Оставить заявку</button>
+              <p class="form-note" style="margin-top:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted);">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
             </form>
           </div>
 
