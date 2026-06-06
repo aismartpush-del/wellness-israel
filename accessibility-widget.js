@@ -78,7 +78,7 @@
     trigger.setAttribute('aria-expanded', 'false');
     trigger.setAttribute('aria-controls', 'wi-a11y-panel');
     trigger.innerHTML =
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="pointer-events:none">' +
         '<circle cx="12" cy="4" r="1.5"/>' +
         '<path d="M6 8h12M12 8v13M8 13l-2 5M16 13l2 5"/>' +
       '</svg>';
