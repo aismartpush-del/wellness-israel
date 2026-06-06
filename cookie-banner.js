@@ -1,10 +1,7 @@
 /**
- * Wellness Israel — Cookie Consent Banner
- * Підключити перед </body>:
- *   <script src="cookie-banner.js"></script>
- *
- * Не потребує сторонніх бібліотек.
- * Зберігає вибір користувача в localStorage на 365 днів.
+ * Wellness Israel - Cookie Consent Banner
+ * Add before </body>: <script src="cookie-banner.js"></script>
+ * No external dependencies. Saves choice to localStorage for 365 days.
  */
 
 (function () {
@@ -13,23 +10,16 @@
   var STORAGE_KEY = 'wi_cookie_consent';
   var EXPIRE_DAYS = 365;
 
-  // Перевіряємо чи вже є збережена відповідь
   function getConsent() {
     try {
       var item = localStorage.getItem(STORAGE_KEY);
       if (!item) return null;
       var data = JSON.parse(item);
-      if (Date.now() > data.expires) {
-        localStorage.removeItem(STORAGE_KEY);
-        return null;
-      }
+      if (Date.now() > data.expires) { localStorage.removeItem(STORAGE_KEY); return null; }
       return data.value;
-    } catch (e) {
-      return null;
-    }
+    } catch (e) { return null; }
   }
 
-  // Зберігаємо відповідь
   function setConsent(value) {
     try {
       var expires = Date.now() + EXPIRE_DAYS * 24 * 60 * 60 * 1000;
@@ -37,73 +27,63 @@
     } catch (e) {}
   }
 
-  // Будуємо HTML баннера
+  // Text labels as Unicode escapes to avoid server encoding issues
+  var TEXT = {
+    message:  '\u041c\u044b \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c \u0444\u0430\u0439\u043b\u044b cookie \u0434\u043b\u044f \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0439 \u0440\u0430\u0431\u043e\u0442\u044b \u0441\u0430\u0439\u0442\u0430. \u0410\u043d\u0430\u043b\u0438\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0435 cookie \u2014 \u0442\u043e\u043b\u044c\u043a\u043e \u0441 \u0432\u0430\u0448\u0435\u0433\u043e \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u044f. ',
+    linkText:  '\u041f\u043e\u043b\u0438\u0442\u0438\u043a\u0430 \u043a\u043e\u043d\u0444\u0438\u0434\u0435\u043d\u0446\u0438\u0430\u043b\u044c\u043d\u043e\u0441\u0442\u0438',
+    decline:   '\u0422\u043e\u043b\u044c\u043a\u043e \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u044b\u0435',
+    accept:    '\u041f\u0440\u0438\u043d\u044f\u0442\u044c \u0432\u0441\u0435',
+    ariaLabel: '\u0421\u043e\u0433\u043b\u0430\u0441\u0438\u0435 \u043d\u0430 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 \u0444\u0430\u0439\u043b\u043e\u0432 cookie'
+  };
+
   function createBanner() {
     var banner = document.createElement('div');
     banner.className = 'wi-cookie-banner';
     banner.setAttribute('role', 'dialog');
-    banner.setAttribute('aria-label', 'Согласие на использование файлов cookie');
+    banner.setAttribute('aria-label', TEXT.ariaLabel);
     banner.setAttribute('aria-live', 'polite');
 
-    banner.innerHTML = [
-      '<div class="wi-cookie-inner">',
-        '<p class="wi-cookie-text">',
-          'Мы используем файлы cookie для корректной работы сайта. ',
-          'Аналитические cookie устанавливаются только с вашего согласия. ',
-          '<a href="privacy.html">Политика конфиденциальности</a>',
-        '</p>',
-        '<div class="wi-cookie-actions">',
-          '<button class="wi-cookie-btn wi-decline" type="button" id="wi-cookie-decline">',
-            'Только необходимые',
-          '</button>',
-          '<button class="wi-cookie-btn wi-accept" type="button" id="wi-cookie-accept">',
-            'Принять все',
-          '</button>',
-        '</div>',
-      '</div>'
-    ].join('');
+    banner.innerHTML =
+      '<div class="wi-cookie-inner">' +
+        '<p class="wi-cookie-text">' +
+          TEXT.message +
+          '<a href="privacy.html">' + TEXT.linkText + '</a>' +
+        '</p>' +
+        '<div class="wi-cookie-actions">' +
+          '<button class="wi-cookie-btn wi-decline" type="button" id="wi-cookie-decline">' + TEXT.decline + '</button>' +
+          '<button class="wi-cookie-btn wi-accept"  type="button" id="wi-cookie-accept">'  + TEXT.accept  + '</button>' +
+        '</div>' +
+      '</div>';
 
     return banner;
   }
 
-  // Показуємо баннер
   function showBanner() {
     var banner = createBanner();
     document.body.appendChild(banner);
 
-    // Анімація появи (трохи затримка для рендеру)
-    setTimeout(function () {
-      banner.classList.add('is-visible');
-    }, 300);
+    setTimeout(function () { banner.classList.add('is-visible'); }, 300);
 
-    // Кнопка «Прийняти»
     document.getElementById('wi-cookie-accept').addEventListener('click', function () {
       setConsent('accepted');
       hideBanner(banner);
-      // Тут можна ініціалізувати аналітику (Google Analytics тощо):
+      // Uncomment to enable analytics after consent:
       // if (typeof gtag === 'function') { gtag('consent', 'update', { analytics_storage: 'granted' }); }
     });
 
-    // Кнопка «Тільки необхідні»
     document.getElementById('wi-cookie-decline').addEventListener('click', function () {
       setConsent('declined');
       hideBanner(banner);
     });
   }
 
-  // Ховаємо баннер
   function hideBanner(banner) {
     banner.classList.remove('is-visible');
-    setTimeout(function () {
-      if (banner.parentNode) {
-        banner.parentNode.removeChild(banner);
-      }
-    }, 400);
+    setTimeout(function () { if (banner.parentNode) banner.parentNode.removeChild(banner); }, 400);
   }
 
-  // Запуск
   function init() {
-    if (getConsent() !== null) return; // вибір вже зроблено
+    if (getConsent() !== null) return;
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', showBanner);
     } else {
