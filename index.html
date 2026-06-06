@@ -1522,7 +1522,10 @@
                 </div>
               </fieldset>
               <button type="submit" class="btn btn-primary form-submit" style="width:100%;margin-top:var(--space-4);">Оставить заявку</button>
-              <p class="form-note" style="margin-top:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted);">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
+              <label class="form-consent" style="display:flex;align-items:flex-start;gap:10px;margin-top:var(--space-3);cursor:pointer;">
+                <input type="checkbox" id="consent-checkbox" name="consent" required style="margin-top:3px;flex-shrink:0;accent-color:var(--color-primary);width:16px;height:16px;cursor:pointer;">
+                <span style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;">Я даю согласие на обработку персональных данных в соответствии с <a href="privacy.html" target="_blank" style="color:var(--color-primary);text-decoration:underline;">Политикой конфиденциальности</a></span>
+              </label>
             </form>
           </div>
 
@@ -1650,8 +1653,14 @@
       var name = (form.querySelector('[name="name"]') || {}).value || '';
       var phone = (form.querySelector('[name="phone"]') || {}).value || '';
       var topics = Array.from(form.querySelectorAll('[name="topic"]:checked')).map(function(cb){return cb.value;});
+      var consent = form.querySelector('#consent-checkbox');
       if (!name.trim() || !phone.trim()) {
         alert('Пожалуйста, заполните имя и телефон');
+        return;
+      }
+      if (consent && !consent.checked) {
+        alert('Пожалуйста, подтвердите согласие на обработку данных');
+        consent.focus();
         return;
       }
       var topicStr = topics.length ? topics.join(', ') : 'не указано';
