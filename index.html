@@ -1611,15 +1611,18 @@
     // Form
     (function(){
       var form = document.getElementById('applicationForm');
-      var wrap = document.querySelector('.form-form');
       var ok   = document.querySelector('.form-success');
+      var btn  = form ? form.querySelector('[type="submit"]') : null;
       if (!form) return;
+
       form.addEventListener('submit', function(e) {
         e.preventDefault();
+
         var name    = (form.querySelector('[name="firstName"]') || {}).value || '';
         var phone   = (form.querySelector('[name="phone"]') || {}).value || '';
         var topics  = Array.from(form.querySelectorAll('[name="topic"]:checked')).map(function(cb){ return cb.value; });
         var consent = form.querySelector('#consent-checkbox');
+
         if (!name.trim() || !phone.trim()) {
           alert('Пожалуйста, заполните имя и телефон');
           return;
@@ -1629,10 +1632,33 @@
           consent.focus();
           return;
         }
-        var topicStr = topics.length ? topics.join(', ') : 'не указано';
-        var msg = 'Здравствуйте! Меня зовут ' + name + '.%0AТелефон: ' + phone + '.%0AТема: ' + topicStr + '.%0AОставляю заявку с сайта Wellness Israel.';
-        window.open('https://wa.me/972545761126?text=' + msg, '_blank');
-        if (ok) { form.hidden = true; ok.style.display = 'flex'; ok.scrollIntoView({behavior:'smooth', block:'center'}); }
+
+        if (btn) { btn.disabled = true; btn.textContent = 'Отправка...'; }
+
+        fetch('send.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name:    name.trim(),
+            phone:   phone.trim(),
+            topics:  topics,
+            consent: true
+          })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.ok) {
+            form.hidden = true;
+            if (ok) { ok.style.display = 'flex'; ok.scrollIntoView({behavior:'smooth', block:'center'}); }
+          } else {
+            alert(data.error || 'Произошла ошибка. Напишите нам в WhatsApp.');
+            if (btn) { btn.disabled = false; btn.textContent = 'Оставить заявку'; }
+          }
+        })
+        .catch(function() {
+          alert('Не удалось отправить. Пожалуйста, напишите нам в WhatsApp.');
+          if (btn) { btn.disabled = false; btn.textContent = 'Оставить заявку'; }
+        });
       });
     })();
     // Burger
