@@ -1,0 +1,109 @@
+/* =====================================================
+   Wellness Israel — Cookie Consent Banner
+   Підключити: <link rel="stylesheet" href="cookie-banner.css">
+   ===================================================== */
+
+.wi-cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: #1e2d28;
+  color: #f0ede8;
+  padding: 20px 24px;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.18);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wi-cookie-banner.is-visible {
+  transform: translateY(0);
+}
+
+.wi-cookie-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.wi-cookie-text {
+  flex: 1;
+  min-width: 260px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: rgba(240, 237, 232, 0.85);
+}
+
+.wi-cookie-text a {
+  color: #5ec4b5;
+  text-decoration: underline;
+}
+
+.wi-cookie-text a:hover {
+  color: #3BAA9A;
+}
+
+.wi-cookie-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.wi-cookie-btn {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.wi-cookie-btn:hover {
+  transform: translateY(-1px);
+}
+
+.wi-cookie-btn.wi-accept {
+  background: #3BAA9A;
+  color: #fff;
+}
+
+.wi-cookie-btn.wi-accept:hover {
+  background: #2d9587;
+}
+
+.wi-cookie-btn.wi-decline {
+  background: transparent;
+  color: rgba(240, 237, 232, 0.7);
+  border: 1px solid rgba(240, 237, 232, 0.25);
+}
+
+.wi-cookie-btn.wi-decline:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #f0ede8;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .wi-cookie-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .wi-cookie-actions {
+    width: 100%;
+  }
+  .wi-cookie-btn {
+    flex: 1;
+    text-align: center;
+  }
+}

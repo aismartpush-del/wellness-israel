@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Заявление о доступности — Wellness Israel</title>
+  <meta name="description" content="Wellness Israel стремится к тому, чтобы сайт был доступен для всех пользователей." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #3BAA9A;
+      --color-secondary: #D07A5A;
+      --color-bg: #F7F3EE;
+      --color-surface: #FFFFFF;
+      --color-text: #2B2B2B;
+      --color-text-muted: #6F6F6F;
+      --color-border: #E0D9D0;
+      --radius: 12px;
+      --max-w: 780px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--color-text);
+      background: var(--color-bg);
+    }
+    a { color: var(--color-primary); text-decoration: underline; }
+    a:hover { color: var(--color-secondary); }
+
+    /* Header */
+    .site-header {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: 20px 24px;
+    }
+    .site-header-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .site-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+    .site-logo span { color: var(--color-primary); }
+    .back-link {
+      font-size: 0.875rem;
+      color: var(--color-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover { color: var(--color-secondary); }
+
+    /* Main */
+    .page-wrapper {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    .page-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      margin-bottom: 12px;
+      display: block;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .page-date {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--color-text);
+      margin: 40px 0 12px;
+    }
+    p { margin-bottom: 16px; color: var(--color-text); }
+    ul, ol { padding-left: 24px; margin-bottom: 16px; }
+    li { margin-bottom: 8px; }
+
+    .info-box {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-left: 4px solid var(--color-primary);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin: 32px 0;
+    }
+    .info-box p { margin-bottom: 0; }
+
+    /* Footer */
+    .page-footer {
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .page-footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 24px;
+      margin-bottom: 16px;
+      list-style: none;
+      padding: 0;
+    }
+    .footer-links a {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+    .footer-links a:hover { color: var(--color-primary); }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header" role="banner">
+  <div class="site-header-inner">
+    <a href="index.html" class="site-logo">Wellness <span>Israel</span></a>
+    <a href="index.html" class="back-link" aria-label="Вернуться на главную">
+      ← На главную
+    </a>
+  </div>
+</header>
+
+<main id="main-content" class="page-wrapper">
+  <span class="page-label">Доступность</span>
+  <h1>Заявление о доступности</h1>
+  <p class="page-date">Последнее обновление: июнь 2025</p>
+
+  <p>Wellness Israel стремится к тому, чтобы наш сайт был доступен для всех пользователей, в том числе для людей с ограниченными возможностями. Мы стараемся соответствовать требованиям стандарта <strong>WCAG 2.1 уровня AA</strong> и израильского стандарта <strong>SI 5568</strong> (תקן ישראלי 5568).</p>
+
+  <div class="info-box">
+    <p>Если вы столкнулись с трудностями при пользовании сайтом, пожалуйста, свяжитесь с нами — мы постараемся помочь в течение двух рабочих дней.</p>
+  </div>
+
+  <h2>Что мы делаем для доступности</h2>
+  <ul>
+    <li>Используем семантическую HTML-разметку (заголовки, списки, ориентиры).</li>
+    <li>Обеспечиваем достаточный контраст текста и фона (не менее 4.5:1 для обычного текста).</li>
+    <li>Все изображения имеют альтернативный текст (атрибут <code>alt</code>).</li>
+    <li>Сайт полностью управляется с клавиатуры.</li>
+    <li>Интерактивные элементы имеют видимый фокус.</li>
+    <li>Формы содержат понятные метки (<code>label</code>) для каждого поля.</li>
+    <li>Сайт адаптирован для мобильных устройств.</li>
+  </ul>
+
+  <h2>Известные ограничения</h2>
+  <p>Несмотря на наши усилия, на сайте могут встречаться элементы, не полностью соответствующие стандартам доступности. Мы продолжаем работу по их устранению. Если вы обнаружили проблему — сообщите нам.</p>
+
+  <h2>Стандарт доступности</h2>
+  <p>Мы ориентируемся на <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">WCAG 2.1 (Web Content Accessibility Guidelines)</a> уровня AA и израильский стандарт SI 5568, обязательный для публичных и коммерческих сайтов в Израиле.</p>
+
+  <h2>Браузеры и вспомогательные технологии</h2>
+  <p>Сайт протестирован в следующих комбинациях:</p>
+  <ul>
+    <li>Chrome + NVDA (Windows)</li>
+    <li>Safari + VoiceOver (macOS / iOS)</li>
+    <li>Firefox + JAWS (Windows)</li>
+  </ul>
+
+  <h2>Обратная связь</h2>
+  <p>Если вы столкнулись с барьером доступности или хотите сообщить о проблеме, свяжитесь с нами:</p>
+  <ul>
+    <li><strong>WhatsApp:</strong> <a href="https://wa.me/972545761126" target="_blank" rel="noopener">+972 54-576-1126</a></li>
+    <li><strong>Сайт:</strong> <a href="index.html#contact">Форма обратной связи</a></li>
+  </ul>
+  <p>Мы ответим в течение двух рабочих дней.</p>
+
+  <h2>Дата последней проверки</h2>
+  <p>Последняя оценка доступности сайта проводилась в <strong>июне 2025 года</strong> внутренней командой Wellness Israel.</p>
+</main>
+
+<footer class="page-footer" role="contentinfo">
+  <div class="page-footer-inner">
+    <ul class="footer-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="privacy.html">Политика конфиденциальности</a></li>
+      <li><a href="terms.html">Правила сайта</a></li>
+      <li><a href="accessibility.html" aria-current="page">Доступность</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Wellness Israel. Все права защищены.</p>
+  </div>
+</footer>
+
+</body>
+</html>

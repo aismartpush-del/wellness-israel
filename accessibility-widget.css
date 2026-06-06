@@ -1,0 +1,285 @@
+/* =====================================================
+   Wellness Israel — Accessibility Widget
+   Кнопка доступності + панель налаштувань
+   ===================================================== */
+
+/* ---- Кнопка-тригер ---- */
+.wi-a11y-trigger {
+  position: fixed;
+  bottom: 88px; /* вище за WhatsApp кнопку */
+  left: 20px;
+  z-index: 9998;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #2B2B2B;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  transition: background 0.2s, transform 0.15s;
+}
+
+.wi-a11y-trigger:hover,
+.wi-a11y-trigger:focus-visible {
+  background: #3BAA9A;
+  transform: scale(1.08);
+  outline: 3px solid #3BAA9A;
+  outline-offset: 2px;
+}
+
+.wi-a11y-trigger svg {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+/* ---- Панель ---- */
+.wi-a11y-panel {
+  position: fixed;
+  bottom: 152px;
+  left: 20px;
+  z-index: 9997;
+  width: 280px;
+  background: #fff;
+  border: 1px solid #E0D9D0;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.14);
+  padding: 0;
+  overflow: hidden;
+
+  /* hidden state */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px) scale(0.97);
+  transform-origin: bottom left;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.wi-a11y-panel.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.wi-a11y-panel-header {
+  background: #1e2d28;
+  color: #f0ede8;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.wi-a11y-close {
+  background: none;
+  border: none;
+  color: rgba(240, 237, 232, 0.7);
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+
+.wi-a11y-close:hover { color: #f0ede8; }
+
+.wi-a11y-panel-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ---- Кожна опція ---- */
+.wi-a11y-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #F7F3EE;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.85rem;
+  color: #2B2B2B;
+  user-select: none;
+}
+
+.wi-a11y-option:hover { background: #ede8e0; }
+
+.wi-a11y-option-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wi-a11y-option-icon {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* Toggle switch */
+.wi-a11y-toggle {
+  position: relative;
+  width: 38px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.wi-a11y-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.wi-a11y-toggle-track {
+  position: absolute;
+  inset: 0;
+  background: #D0CAC0;
+  border-radius: 100px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.wi-a11y-toggle-track::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+}
+
+.wi-a11y-toggle input:checked + .wi-a11y-toggle-track {
+  background: #3BAA9A;
+}
+
+.wi-a11y-toggle input:checked + .wi-a11y-toggle-track::after {
+  transform: translateX(16px);
+}
+
+.wi-a11y-toggle input:focus-visible + .wi-a11y-toggle-track {
+  outline: 2px solid #3BAA9A;
+  outline-offset: 2px;
+}
+
+/* ---- Font size controls ---- */
+.wi-a11y-font-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.wi-a11y-font-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid #D0CAC0;
+  background: #fff;
+  color: #2B2B2B;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.wi-a11y-font-btn:hover { background: #ede8e0; border-color: #3BAA9A; }
+
+.wi-a11y-font-value {
+  font-size: 0.8rem;
+  color: #6F6F6F;
+  min-width: 28px;
+  text-align: center;
+}
+
+/* ---- Reset ---- */
+.wi-a11y-reset {
+  display: block;
+  width: 100%;
+  background: none;
+  border: 1px solid #E0D9D0;
+  border-radius: 8px;
+  padding: 8px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8rem;
+  color: #6F6F6F;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.wi-a11y-reset:hover { background: #F7F3EE; color: #2B2B2B; }
+
+/* ======================================================
+   Класи, що накладаються на <body> / <html>
+   ====================================================== */
+
+/* Великий шрифт */
+body.wi-large-text { font-size: 18px !important; }
+body.wi-large-text p,
+body.wi-large-text li,
+body.wi-large-text a { font-size: 1.1em; }
+
+/* Дуже великий шрифт */
+body.wi-xlarge-text { font-size: 20px !important; }
+
+/* Контрастний режим */
+body.wi-high-contrast {
+  filter: contrast(1.5) saturate(0);
+}
+
+/* Курсор для слабозорих */
+body.wi-big-cursor * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M8 1 L8 28 L14 22 L18 31 L21 30 L17 21 L25 21 Z' fill='%23000' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E") 8 2, auto; }
+
+/* Підкреслення посилань */
+body.wi-underline-links a { text-decoration: underline !important; }
+
+/* Читабельний шрифт */
+body.wi-readable-font,
+body.wi-readable-font p,
+body.wi-readable-font li,
+body.wi-readable-font a {
+  font-family: Arial, Helvetica, sans-serif !important;
+  letter-spacing: 0.02em;
+}
+
+/* Зупинити анімації */
+body.wi-no-animations *,
+body.wi-no-animations *::before,
+body.wi-no-animations *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+/* Темний режим */
+body.wi-dark-mode {
+  filter: invert(0.92) hue-rotate(180deg);
+}
+body.wi-dark-mode img,
+body.wi-dark-mode video,
+body.wi-dark-mode [style*="background-image"] {
+  filter: invert(1) hue-rotate(180deg);
+}
