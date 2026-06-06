@@ -833,6 +833,8 @@
     }
 
   </style>
+  <link rel="stylesheet" href="cookie-banner.css" />
+  <link rel="stylesheet" href="accessibility-widget.css" />
 </head>
 
 <body>
@@ -1569,7 +1571,11 @@
       </div>
       <div class="footer-bottom">
         <span>© 2026 Wellness Israel. Все права защищены.</span>
-        <span>Израиль · Wellness Israel</span>
+        <nav aria-label="Юридическая информация" style="display:flex;flex-wrap:wrap;gap:4px 16px;">
+          <a href="privacy.html" style="font-size:var(--text-xs);color:rgba(255,255,255,.45);text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,.8)'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Конфиденциальность</a>
+          <a href="terms.html" style="font-size:var(--text-xs);color:rgba(255,255,255,.45);text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,.8)'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Правила сайта</a>
+          <a href="accessibility.html" style="font-size:var(--text-xs);color:rgba(255,255,255,.45);text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,.8)'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Доступность</a>
+        </nav>
       </div>
     </div>
   </footer>
@@ -1653,5 +1659,7 @@
     });
   })();
   </script>
+  <script src="cookie-banner.js"></script>
+  <script src="accessibility-widget.js"></script>
 </body>
 </html>
