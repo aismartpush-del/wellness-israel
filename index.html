@@ -1610,13 +1610,29 @@
     })();
     // Form
     (function(){
-      const form=document.getElementById('applicationForm'),wrap=document.querySelector('.form-form'),ok=document.querySelector('.form-success');
-      if(!form)return;
-      form.addEventListener('submit',function(e){
+      var form = document.getElementById('applicationForm');
+      var wrap = document.querySelector('.form-form');
+      var ok   = document.querySelector('.form-success');
+      if (!form) return;
+      form.addEventListener('submit', function(e) {
         e.preventDefault();
-        const n=document.getElementById('firstName').value.trim(),m=document.getElementById('email').value.trim();
-        if(!n||!m){alert('Пожалуйста, укажите имя и email.');return;}
-        wrap.classList.add('hidden');ok.classList.add('visible');ok.scrollIntoView({behavior:'smooth',block:'center'});
+        var name    = (form.querySelector('[name="firstName"]') || {}).value || '';
+        var phone   = (form.querySelector('[name="phone"]') || {}).value || '';
+        var topics  = Array.from(form.querySelectorAll('[name="topic"]:checked')).map(function(cb){ return cb.value; });
+        var consent = form.querySelector('#consent-checkbox');
+        if (!name.trim() || !phone.trim()) {
+          alert('Пожалуйста, заполните имя и телефон');
+          return;
+        }
+        if (consent && !consent.checked) {
+          alert('Пожалуйста, подтвердите согласие на обработку данных');
+          consent.focus();
+          return;
+        }
+        var topicStr = topics.length ? topics.join(', ') : 'не указано';
+        var msg = 'Здравствуйте! Меня зовут ' + name + '.%0AТелефон: ' + phone + '.%0AТема: ' + topicStr + '.%0AОставляю заявку с сайта Wellness Israel.';
+        window.open('https://wa.me/972545761126?text=' + msg, '_blank');
+        if (ok) { form.hidden = true; ok.style.display = 'flex'; ok.scrollIntoView({behavior:'smooth', block:'center'}); }
       });
     })();
     // Burger
@@ -1643,36 +1659,7 @@
   </a>
   <span class="wa-tooltip">Написать в WhatsApp</span>
 
-  <script>
-  (function() {
-    var form = document.getElementById('contact-form');
-    var success = document.getElementById('form-success');
-    if (!form) return;
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var name = (form.querySelector('[name="name"]') || {}).value || '';
-      var phone = (form.querySelector('[name="phone"]') || {}).value || '';
-      var topics = Array.from(form.querySelectorAll('[name="topic"]:checked')).map(function(cb){return cb.value;});
-      var consent = form.querySelector('#consent-checkbox');
-      if (!name.trim() || !phone.trim()) {
-        alert('Пожалуйста, заполните имя и телефон');
-        return;
-      }
-      if (consent && !consent.checked) {
-        alert('Пожалуйста, подтвердите согласие на обработку данных');
-        consent.focus();
-        return;
-      }
-      var topicStr = topics.length ? topics.join(', ') : 'не указано';
-      var msg = 'Здравствуйте! Меня зовут ' + name + '.%0AТелефон: ' + phone + '.%0AТема: ' + topicStr + '.%0AОставляю заявку с сайта Wellness Israel.';
-      window.open('https://wa.me/972545761126?text=' + msg, '_blank');
-      if (form && success) {
-        form.hidden = true;
-        success.hidden = false;
-      }
-    });
-  })();
-  </script>
+
   <script src="cookie-banner.js" charset="utf-8"></script>
   <script src="accessibility-widget.js" charset="utf-8"></script>
 </body>
